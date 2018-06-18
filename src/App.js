@@ -10,25 +10,41 @@ class App extends Component {
 
     this.state = {
       movies: [],
+      customers: [],
     };
   }
 
   showLibrary = (event) => {
     this.setState({
-      movies: <Library url="http://localhost:3000/movies" />
+      movies: <Library url="http://localhost:3000/movies" />,
+      customers: []
+    });
+  }
+
+  showCustomers = (event) => {
+    this.setState({
+      movies: [],
+      customers: <CustomerList url="http://localhost:3000/customers"/>
     });
   }
 
   render() {
     return (
       <div className="App">
-        <button className="see-library" onClick={this.showLibrary}>
-          Poseiden Faves
-        </button>
+        <header>
+          <button className="see-library" onClick={this.showLibrary}>
+            Poseiden Faves
+          </button>
+          <button className="see-customers" onClick={this.showCustomers}>
+            Poseiden Customers
+          </button>
+        </header>
+
         <section>
           {this.state.movies}
+          {this.state.customers}
         </section>
-        <CustomerList url="http://localhost:3000/customers"/>
+
       </div>
     );
   }
