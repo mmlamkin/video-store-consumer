@@ -44,7 +44,7 @@ class SearchForm extends Component {
       return (
         <form onSubmit={this.onFormSubmit}>
           <div key="movieName">
-            <label htmlFor="movieName">Movie Name: </label>
+            <label htmlFor="movieName">Movie: </label>
             <input
               id="movieName"
               name="movieName"
