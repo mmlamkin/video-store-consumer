@@ -3,6 +3,7 @@ import './App.css';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import SearchForm from './components/SearchForm';
+import axios from 'axios';
 
 
 class App extends Component {
@@ -29,9 +30,10 @@ class App extends Component {
     });
   }
 
-  searchMovieAPICall(movieName) {
+  searchMovieAPICall = (movieName) => {
     this.setState({
-      searchResults: `api makes a call for movie ${movieName} and calls function to show results` ,
+      movies: `api makes a call for movie ${movieName} and calls function to show results`,
+      customers: [],
     });
   }
 
@@ -46,17 +48,15 @@ class App extends Component {
             Poseiden Customers
           </button>
         </header>
+        <SearchForm
+          searchMovie={this.searchMovieAPICall}
+         />
 
         <section>
           {this.state.movies}
           {this.state.customers}
         </section>
-        <SearchForm
-          searchMovie={this.searchMovieAPICall}
-         />
-         <ul>
-          <li>{this.state.searchResults}</li>
-         </ul>
+
       </div>
     );
   }

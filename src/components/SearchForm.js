@@ -36,10 +36,6 @@ class SearchForm extends Component {
       this.clearForm();
     }
 
-    //external api
-
-    //display api call response (not in state)
-
 
     render() {
       return (
