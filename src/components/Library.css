@@ -1,0 +1,4 @@
+.movie-library {
+  display: flex;
+  flex-direction: column;
+}
