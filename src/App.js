@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
+import SearchForm from './components/SearchForm';
+
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,12 @@ class App extends Component {
     });
   }
 
+  searchMovieAPICall(movieName) {
+    this.setState({
+      searchResults: `api makes a call for movie ${movieName} and calls function to show results` ,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -44,7 +51,12 @@ class App extends Component {
           {this.state.movies}
           {this.state.customers}
         </section>
-
+        <SearchForm
+          searchMovie={this.searchMovieAPICall}
+         />
+         <ul>
+          <li>{this.state.searchResults}</li>
+         </ul>
       </div>
     );
   }
