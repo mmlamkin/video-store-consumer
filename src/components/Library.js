@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Library.css';
+import Movie from './Movie'
 
 class Library extends Component {
 
@@ -32,10 +33,11 @@ class Library extends Component {
     const movieLibrary = this.state.movies.map((movie) => {
 
       return (
-        <div>
-          <img src={movie.image_url} alt="movie thumbnail"/>
-          <p>{movie.title} {movie.release_date}</p>
-        </div>
+        <Movie
+          image_url={movie.image_url}
+          title={movie.title}
+          release_date={movie.release_date}
+        />
       );
     });
 
