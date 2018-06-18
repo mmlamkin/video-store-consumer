@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './Library.css';
-import Movie from './Movie'
 
-class Library extends Component {
+
+class CustomerList extends Component {
 
   constructor(props) {
   super(props);
 
   this.state = {
-    movies: [],
+    customers: [],
   };
 }
 
   componentDidMount = () => {
     axios.get(`${this.props.url}`)
     .then( (response) => {
-
+      console.log(response);
       this.setState({
-        movies: response.data
+        customers: response.data
       });
     })
     .catch( (error) => {
@@ -29,19 +28,17 @@ class Library extends Component {
     });
   }
 
-  renderMovies = () => {
-    const movieLibrary = this.state.movies.map((movie) => {
+  renderCustomers= () => {
+    const List = this.state.customers.map((customer) => {
 
       return (
-        <Movie
-          image_url={movie.image_url}
-          title={movie.title}
-          release_date={movie.release_date}
-        />
+        <p>
+          {customer.name}
+        </p>
       );
     });
 
-    return movieLibrary
+    return List
   }
 
   render() {
@@ -55,8 +52,8 @@ class Library extends Component {
     return (
       <section>
       <span>{anyErrors()}</span>
-        <div className='movie-library'>
-          {this.renderMovies()}
+        <div>
+          {this.renderCustomers()}
         </div>
       </section>
     )
@@ -65,4 +62,4 @@ class Library extends Component {
 }
 
 
-export default Library;
+export default CustomerList;
