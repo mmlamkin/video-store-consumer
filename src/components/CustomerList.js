@@ -10,6 +10,7 @@ class CustomerList extends Component {
 
   this.state = {
     customers: [],
+    rentalCustomer: ''
   };
 }
 
@@ -28,18 +29,29 @@ class CustomerList extends Component {
     });
   }
 
+  addCustomer= () => {
+    this.props.addCustomerCallback()
+  }
+
   renderCustomers= () => {
     const List = this.state.customers.map((customer) => {
 
       return (
-        <p>
-          {customer.name}
-        </p>
+        <section>
+          <p>
+            {customer.name}
+          </p>
+          <button className="rental-customer" onClick={this.addCustomer}>
+            Add to Rental
+          </button>
+        </section>
       );
     });
 
     return List
   }
+
+
 
   render() {
 
@@ -51,10 +63,8 @@ class CustomerList extends Component {
 
     return (
       <section>
-      <span>{anyErrors()}</span>
-        <div>
-          {this.renderCustomers()}
-        </div>
+        {anyErrors()}
+        {this.renderCustomers()}
       </section>
     )
   }
