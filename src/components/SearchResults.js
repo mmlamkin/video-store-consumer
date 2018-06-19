@@ -4,7 +4,6 @@ import axios from 'axios';
 import './Library.css';
 import Movie from './Movie'
 
-const MOVIEDB_KEY = '32d7cfaf6ce21cc76643993aa46a7590';
 
 class SearchResults extends Component {
 
@@ -13,17 +12,19 @@ class SearchResults extends Component {
 
   this.state = {
     movies: [],
-    movieName: '',
   };
 }
-
+// this should only be run once search button is clicked
   componentDidMount = () => {
-    axios.get(`http://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&query=${this.props.movieName}`)
+    axios.get(`http://localhost:3000/movies/${this.props.movieName}`)
+    .then ((response) => {
+      console.log(response);
 
-    .then ((movieData) => {
-      console.log(movieData.results);
+      let results = response.data;
+      results.isArray() === 'object' ? results = [results]: '';
+
       this.setState({
-        movies: movieData.results,
+        movies: results,
       })
     })
     .catch(() => {
@@ -34,11 +35,13 @@ class SearchResults extends Component {
   }
 
   showMovies = () => {
+
     const movieLibrary = this.state.movies.map((movie, index) => {
+
       return (
         <Movie
           key={index}
-          image_url={movie.poster_path}
+          image_url={movie.image_url}
           title={movie.title}
           release_date={movie.release_date}
         />
@@ -52,7 +55,7 @@ class SearchResults extends Component {
 
     return (
       <section>
-      <span>{this.state.error}</span>
+      <span>{this.state.error ? this.state.error : ''}</span>
         <div className='movie-library'>
           {this.state.movies ? this.showMovies() : ''}
         </div>
@@ -67,9 +70,9 @@ class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
+  movieName: PropTypes.string,
   test: PropTypes.string,
   movies: PropTypes.array,
-  movieName: PropTypes.string,
 };
 
 export default SearchResults;

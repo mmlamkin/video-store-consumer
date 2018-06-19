@@ -14,11 +14,23 @@ class SearchContainer extends Component {
     super(props);
 
     this.state = {
-      movies: [],
-      movieName: 'King',
     };
   }
 
+  defMovieName = (title) => {
+    this.setState({
+      movieName: title,
+    })
+  }
+
+  defSearchMovie = () => {
+    return (
+      <SearchResults
+        test="This is the SerchResults"
+        movieName={this.state.movieName}
+      />
+    )
+  }
 
   render() {
 
@@ -26,11 +38,10 @@ class SearchContainer extends Component {
       <section>
         <SearchForm
           test="This is the SearchForm"
+          searchTerm={this.defMovieName}
         />
-        <SearchResults
-          test="This is the SerchResults"
-          movieName={this.state.movieName}
-        />
+
+        {this.state.movieName ? this.defSearchMovie() : ''}
       </section>
     )
   }

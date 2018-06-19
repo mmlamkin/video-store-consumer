@@ -30,10 +30,11 @@ class Library extends Component {
   }
 
   renderMovies = () => {
-    const movieLibrary = this.state.movies.map((movie) => {
+    const movieLibrary = this.state.movies.map((movie, index) => {
 
       return (
         <Movie
+          key={index}
           image_url={movie.image_url}
           title={movie.title}
           release_date={movie.release_date}
