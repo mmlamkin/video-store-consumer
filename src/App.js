@@ -7,14 +7,13 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       rentalMovie: '',
-      rentalCustomer: {}
+      rentalCustomer: {},
     };
   }
 
@@ -27,20 +26,6 @@ class App extends Component {
       message: '',
       error: ''
     })
-  }
-
-  showLibrary = (event) => {
-    this.setState({
-      movies: <Library url="http://localhost:3000/movies" updateRentalCallback={this.updateRentalMovie}/>,
-      customers: []
-    });
-  }
-
-  showCustomers = (event) => {
-    this.setState({
-      movies: [],
-      customers: <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
-    });
   }
 
   updateRentalCustomer = (name, id) => {
@@ -93,34 +78,63 @@ class App extends Component {
   }
     return (
       <Router>
-      <div className="App">
-        <p>{this.state.message}</p>
-        <span>{anyErrors()}</span>
-        <header>
-          <h1>Poseiden Rental</h1>
 
-          <Link to="/library">Library</Link>
-          <button className="see-customers" onClick={this.showCustomers}>
-            Poseiden Customers
-          </button>
-          <section className="rental">
-          <p>Selected Movie: {this.state.rentalMovie}</p>
-          <p>Selected Customer: {this.state.rentalCustomer.name}</p>
-          <button className="create-rental" onClick={this.createRental}>
-            Create Rental
-          </button>
+        <div className="App">
+
+          <header>
+
+            <h1>Poseiden Rental</h1>
+
+            <Link to={'/'}>
+              <button className="see-customers">
+               Home
+              </button>
+            </Link>
+
+             <Link to={'/library'}>
+                <button className="see-library" onClick={this.showLibrary}>
+                 Faves
+                </button>
+              </Link>
+
+            <Link to={'/customers'}>
+              <button className="see-customers" onClick={this.showCustomers}>
+               Customers
+              </button>
+            </Link>
+
+            <section className="rental">
+              <p>Selected Movie: {this.state.rentalMovie}</p>
+              <p>Selected Customer: {this.state.rentalCustomer.name}</p>
+
+              <button className="create-rental" onClick={this.createRental}>
+                Create Rental
+              </button>
+            </section>
+
+            <section className="search-form">
+              <SearchContainer/>
+            </section>
+
+          </header>
+
+          <p>{this.state.message}</p>
+
+          <section className="display">
+            <Route exact={true} path="/" render={() => (
+              <h1>Welcome</h1>
+            )}/>
+
+            <Route path="/library" render={() => (
+              <Library updateRentalCallback={this.updateRentalMovie}/>
+            )}/>
+
+            <Route path="/customers" render={() => (
+              <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
+            )}/>
           </section>
-          <section className="search-form">
-          <SearchContainer />
-          </section>
-        </header>
+        </div>
 
-        <section className="display">
-        
-        </section>
-
-
-      </div>
       </Router>
     );
   }
