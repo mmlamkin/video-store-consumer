@@ -50,10 +50,11 @@ class SearchForm extends Component {
         value="Search"
         />
       </form>
+
     );
   }
-}
 
+}
 SearchForm.propTypes = {
   defMovieName: PropTypes.func,
   test: PropTypes.string,

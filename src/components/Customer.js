@@ -12,8 +12,8 @@ class Customer extends Component {
   render() {
 
     return (
-      <section>
-        <p>{this.props.name}</p>
+      <section className="customer">
+        <span>{this.props.name}</span>
         <button className="rental-customer" onClick={this.addCustomerToRental}>
           Add Customer to Rental
         </button>

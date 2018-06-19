@@ -3,6 +3,7 @@ import './App.css';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import axios from 'axios';
+
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import SearchContainer from './components/SearchForm'
 
@@ -18,11 +19,15 @@ class App extends Component {
     };
   }
 
-  showCustomers = (event) => {
+  componentDidMount = () => {
+    let interval = setInterval(this.timer, 10000);
+  }
+
+  timer = () => {
     this.setState({
-      movies: [],
-      customers: <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
-    });
+      message: '',
+      error: ''
+    })
   }
 
   updateRentalCustomer = (name, id) => {
@@ -45,7 +50,7 @@ class App extends Component {
   }
 
   createRental = () => {
-    if (this.state.rentalCustomer.id && this.state.rentalMovie) {
+
     axios.post(`http://localhost:3000/rentals/${this.state.rentalMovie}/check-out?customer_id=${this.state.rentalCustomer.id}&due_date=2018-06-21`)
     .then( (response) => {
 
@@ -64,16 +69,19 @@ class App extends Component {
       rentalCustomer: {}
     })
   }
-  else {
-    console.log('some errors');
-  }
-  }
 
   render() {
+
+    const anyErrors = () => {
+    if (this.state.error) {
+      return <p>{this.state.error}</p>
+    }
+  }
     return (
       <Router>
+
         <div className="App">
-          <p>{this.state.message}</p>
+
           <header>
 
             <h1>Poseiden Rental</h1>
@@ -103,36 +111,51 @@ class App extends Component {
             </Link>
 
             <section className="rental">
-            <p>Selected Movie: {this.state.rentalMovie}</p>
-            <p>Selected Customer: {this.state.rentalCustomer.name}</p>
 
-            <button className="create-rental" onClick={this.createRental}>
-              Create Rental
-            </button>
+              <p>Selected Movie: {this.state.rentalMovie}</p>
+              <p>Selected Customer: {this.state.rentalCustomer.name}</p>
+
+              <button className="create-rental" onClick={this.createRental}>
+                Create Rental
+              </button>
             </section>
+
+            <section className="search-form">
+              <SearchContainer/>
+            </section>
+
+
 
           </header>
 
-          <Route exact={true} path="/" render={() => (
-            <h1>Welcome</h1>
-          )}/>
+          <p>{this.state.message}</p>
 
-          <Route path="/library" render={() => (
-            <Library updateRentalCallback={this.updateRentalMovie}/>
-          )}/>
+          <section className="display">
+            <Route exact={true} path="/" render={() => (
+              <h1>Welcome</h1>
+            )}/>
+
+            <Route path="/library" render={() => (
+              <Library updateRentalCallback={this.updateRentalMovie}/>
+            )}/>
 
           <Route path="/search" render={() => (
               <SearchContainer />
           )}/>
 
-          <Route path="/customers" render={() => (
-            <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
-          )}/>
-
+            <Route path="/customers" render={() => (
+              <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
+            )}/>
+          </section>
         </div>
+
       </Router>
     );
   }
 }
+
+// <button className="see-library" onClick={this.showLibrary}>
+//   Poseiden Faves
+// </button>
 
 export default App;
