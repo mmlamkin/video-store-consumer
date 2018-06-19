@@ -18,6 +18,18 @@ class App extends Component {
       rentalCustomer: {}
     };
   }
+  componentDidMount = () => {
+    let interval = setInterval(this.timer, 5000);
+
+  }
+
+
+  timer = () => {
+    this.setState({
+      message: '',
+      error: ''
+    })
+  }
 
   showLibrary = (event) => {
     this.setState({
@@ -54,7 +66,7 @@ class App extends Component {
   }
 
   createRental = () => {
-    if (this.state.rentalCustomer.id && this.state.rentalMovie) {
+
     axios.post(`http://localhost:3000/rentals/${this.state.rentalMovie}/check-out?customer_id=${this.state.rentalCustomer.id}&due_date=2018-06-21`)
     .then( (response) => {
 
@@ -73,15 +85,19 @@ class App extends Component {
       rentalCustomer: {}
     })
   }
-  else {
-    console.log('some errors');
-  }
-  }
+
 
   render() {
+
+    const anyErrors = () => {
+    if (this.state.error) {
+      return <p>{this.state.error}</p>
+    }
+  }
     return (
       <div className="App">
         <p>{this.state.message}</p>
+        <span>{anyErrors()}</span>
         <header>
           <h1>Poseiden Rental</h1>
           <button className="see-library" onClick={this.showLibrary}>
