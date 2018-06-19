@@ -4,7 +4,7 @@ import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
-import { BrowserRouter as Router } from 'react router dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 class App extends Component {
@@ -79,7 +79,9 @@ class App extends Component {
   }
 
   render() {
+
     return (
+      <Router>
       <div className="App">
         <p>{this.state.message}</p>
         <header>
@@ -106,9 +108,8 @@ class App extends Component {
           {this.state.movies}
           {this.state.customers}
         </section>
-
-
       </div>
+      </Router>
     );
   }
 }
