@@ -66,6 +66,11 @@ class App extends Component {
         error: error.message
       });
     });
+
+    this.setState({
+      rentalMovie: '',
+      rentalCustomer: {}
+    })
   }
   else {
     console.log('some errors');
