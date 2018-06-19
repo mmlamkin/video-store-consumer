@@ -21,11 +21,12 @@ class SearchResults extends Component {
       console.log(response);
 
       let results = response.data;
+
       results.isArray() === 'object' ? results = [results]: '';
 
       this.setState({
         movies: results,
-      })
+      });
     })
     .catch(() => {
       console.log(this.state.movies);

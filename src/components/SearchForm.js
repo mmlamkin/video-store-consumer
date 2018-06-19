@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import './SearchForm.css'
 
 
@@ -33,21 +32,6 @@ class SearchForm extends Component {
     this.props.searchTerm(this.state.movieName);
     this.clearForm();
   }
-
-  render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>
-      <div key="movieName">
-        <label htmlFor="movieName">Movie: </label>
-        <input
-          id="movieName"
-          name="movieName"
-          value={this.state.movieName}
-          onChange={this.onFieldChange}
-          type="text"
-        />
-      </div>
-
 
     render() {
       return (

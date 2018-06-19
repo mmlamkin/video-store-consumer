@@ -32,7 +32,6 @@ class App extends Component {
     });
   }
 
-<<<<<<< HEAD
   updateRentalCustomer = (name, id) => {
     this.setState({
       rentalCustomer: {'name': name,
@@ -98,9 +97,7 @@ class App extends Component {
           </button>
           </section>
           <section className="search-form">
-          <SearchForm
-            searchMovie={this.searchMovieAPICall}
-           />
+          <SearchContainer/>
           </section>
         </header>
 
