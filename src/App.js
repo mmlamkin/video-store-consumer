@@ -20,7 +20,7 @@ class App extends Component {
 
   showLibrary = (event) => {
     this.setState({
-      movies: <Library url="http://localhost:3000/movies" />,
+      movies: <Library url="http://localhost:3000/movies" updateRentalCallback={this.updateRentalMovie}/>,
       customers: []
     });
   }
@@ -35,6 +35,12 @@ class App extends Component {
   updateRentalCustomer = (name) => {
     this.setState({
       rentalCustomer: name
+    })
+  }
+
+  updateRentalMovie = (title) => {
+    this.setState({
+      rentalMovie: title
     })
   }
 
@@ -57,7 +63,7 @@ class App extends Component {
           </button>
           <p>Selected Movie: {this.state.rentalMovie} Selected Customer: {this.state.rentalCustomer}</p>
         </header>
-        
+
         <SearchForm
           searchMovie={this.searchMovieAPICall}
          />

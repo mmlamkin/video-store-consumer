@@ -29,6 +29,10 @@ class Library extends Component {
     });
   }
 
+  updateRental = (title) => {
+    this.props.updateRentalCallback(title)
+  }
+
   renderMovies = () => {
     const movieLibrary = this.state.movies.map((movie) => {
 
@@ -37,6 +41,7 @@ class Library extends Component {
           image_url={movie.image_url}
           title={movie.title}
           release_date={movie.release_date}
+          addMovieToRentalCallback={this.updateRental}
         />
       );
     });
