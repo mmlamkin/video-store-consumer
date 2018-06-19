@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
-import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import SearchContainer from './components/SearchForm'
+
 
 
 class App extends Component {
@@ -41,11 +43,10 @@ class App extends Component {
     })
   }
 
-  searchMovieAPICall = (movieName) => {
+  defMovieName = (title) => {
     this.setState({
-      movies: `api makes a call for movie ${movieName} and calls function to show results`,
-      customers: [],
-    });
+      movieName: title,
+    })
   }
 
   createRental = () => {
@@ -103,7 +104,14 @@ class App extends Component {
               </button>
             </Link>
 
+            <Link to={'/search'}>
+              <button className="see-customers" onClick={this.toSearch}>
+               Search the Sea
+              </button>
+            </Link>
+
             <section className="rental">
+
               <p>Selected Movie: {this.state.rentalMovie}</p>
               <p>Selected Customer: {this.state.rentalCustomer.name}</p>
 
@@ -115,6 +123,8 @@ class App extends Component {
             <section className="search-form">
               <SearchContainer/>
             </section>
+
+
 
           </header>
 
@@ -128,6 +138,10 @@ class App extends Component {
             <Route path="/library" render={() => (
               <Library updateRentalCallback={this.updateRentalMovie}/>
             )}/>
+
+          <Route path="/search" render={() => (
+              <SearchContainer />
+          )}/>
 
             <Route path="/customers" render={() => (
               <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
