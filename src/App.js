@@ -28,8 +28,14 @@ class App extends Component {
   showCustomers = (event) => {
     this.setState({
       movies: [],
-      customers: <CustomerList url="http://localhost:3000/customers" addCustomerCallback={this.updateRental}/>
+      customers: <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
     });
+  }
+
+  updateRentalCustomer = (name) => {
+    this.setState({
+      rentalCustomer: name
+    })
   }
 
   searchMovieAPICall = (movieName) => {
@@ -49,7 +55,9 @@ class App extends Component {
           <button className="see-customers" onClick={this.showCustomers}>
             Poseiden Customers
           </button>
+          <p>Selected Movie: {this.state.rentalMovie} Selected Customer: {this.state.rentalCustomer}</p>
         </header>
+        
         <SearchForm
           searchMovie={this.searchMovieAPICall}
          />

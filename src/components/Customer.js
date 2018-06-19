@@ -5,14 +5,18 @@ import './Customer.css';
 
 class Customer extends Component {
 
+  addCustomerToRental= () => {
+    this.props.addCustomerToRentalCallback(this.props.name)
+  }
 
   render() {
 
     return (
-      <section className="movie">
-        <img src={this.props.image_url} alt="movie thumbnail"/>
-        <p>{this.props.title}</p>
-        <p>{this.props.release_date}</p>
+      <section>
+        <p>{this.props.name}</p>
+        <button className="rental-customer" onClick={this.addCustomerToRental}>
+          Add Customer to Rental
+        </button>
       </section>
     )
   }
@@ -20,4 +24,4 @@ class Customer extends Component {
 }
 
 
-export default Movie;
+export default Customer;

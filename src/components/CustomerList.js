@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Customer from './Customer'
 
 
 class CustomerList extends Component {
@@ -17,7 +18,6 @@ class CustomerList extends Component {
   componentDidMount = () => {
     axios.get(`${this.props.url}`)
     .then( (response) => {
-      console.log(response);
       this.setState({
         customers: response.data
       });
@@ -29,22 +29,15 @@ class CustomerList extends Component {
     });
   }
 
-  addCustomer= () => {
-    this.props.addCustomerCallback()
+  updateRental = (name) => {
+    this.props.updateRentalCallback(name)
   }
 
   renderCustomers= () => {
     const List = this.state.customers.map((customer) => {
 
       return (
-        <section>
-          <p>
-            {customer.name}
-          </p>
-          <button className="rental-customer" onClick={this.addCustomer}>
-            Add to Rental
-          </button>
-        </section>
+          <Customer name={customer.name} addCustomerToRentalCallback={this.updateRental}/>
       );
     });
 
