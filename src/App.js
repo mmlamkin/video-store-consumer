@@ -6,6 +6,7 @@ import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,6 @@ class App extends Component {
     });
   }
 
-<<<<<<< HEAD
   updateRentalCustomer = (name, id) => {
     this.setState({
       rentalCustomer: {'name': name,
@@ -98,9 +98,7 @@ class App extends Component {
           </button>
           </section>
           <section className="search-form">
-          <SearchForm
-            searchMovie={this.searchMovieAPICall}
-           />
+          <SearchContainer />
           </section>
         </header>
 

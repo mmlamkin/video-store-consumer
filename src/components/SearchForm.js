@@ -38,30 +38,15 @@ class SearchForm extends Component {
     return (
       <form onSubmit={this.onFormSubmit}>
       <div key="movieName">
-        <label htmlFor="movieName">Movie: </label>
-        <input
-          id="movieName"
-          name="movieName"
-          value={this.state.movieName}
-          onChange={this.onFieldChange}
-          type="text"
-        />
+      <label htmlFor="movieName">Find a Movie: </label>
+      <input
+      id="movieName"
+      name="movieName"
+      value={this.state.movieName}
+      onChange={this.onFieldChange}
+      type="text"
+      />
       </div>
-
-
-    render() {
-      return (
-        <form onSubmit={this.onFormSubmit}>
-          <div key="movieName">
-            <label htmlFor="movieName">Find a Movie: </label>
-            <input
-              id="movieName"
-              name="movieName"
-              value={this.state.movieName}
-              onChange={this.onFieldChange}
-              type="text"
-             />
-          </div>
 
       <input
       type="submit"
@@ -70,8 +55,8 @@ class SearchForm extends Component {
       </form>
     );
   }
-}
 
+}
 SearchForm.propTypes = {
   searchTerm: PropTypes.func,
   test: PropTypes.string,
