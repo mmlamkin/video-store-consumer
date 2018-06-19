@@ -6,7 +6,7 @@ import './Customer.css';
 class Customer extends Component {
 
   addCustomerToRental= () => {
-    this.props.addCustomerToRentalCallback(this.props.name)
+    this.props.addCustomerToRentalCallback(this.props.name, this.props.id)
   }
 
   render() {

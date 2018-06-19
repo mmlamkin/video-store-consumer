@@ -29,22 +29,21 @@ class CustomerList extends Component {
     });
   }
 
-  updateRental = (name) => {
-    this.props.updateRentalCallback(name)
+  updateRental = (name, id) => {
+    this.props.updateRentalCallback(name, id)
   }
 
   renderCustomers= () => {
     const List = this.state.customers.map((customer) => {
 
       return (
-          <Customer name={customer.name} addCustomerToRentalCallback={this.updateRental}/>
+          <Customer name={customer.name}
+          id={customer.id} addCustomerToRentalCallback={this.updateRental}/>
       );
     });
 
     return List
   }
-
-
 
   render() {
 

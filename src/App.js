@@ -14,7 +14,7 @@ class App extends Component {
       movies: [],
       customers: [],
       rentalMovie: '',
-      rentalCustomer: ''
+      rentalCustomer: {}
     };
   }
 
@@ -32,9 +32,10 @@ class App extends Component {
     });
   }
 
-  updateRentalCustomer = (name) => {
+  updateRentalCustomer = (name, id) => {
     this.setState({
-      rentalCustomer: name
+      rentalCustomer: {'name': name,
+                        'id': id}
     })
   }
 
@@ -51,24 +52,53 @@ class App extends Component {
     });
   }
 
+  createRental = () => {
+    if (this.state.rentalCustomer.id && this.state.rentalMovie) {
+    axios.post(`http://localhost:3000/rentals/${this.state.rentalMovie}/check-out?customer_id=${this.state.rentalCustomer.id}&due_date=2018-06-21`)
+    .then( (response) => {
+
+      this.setState({
+        message: `New Rental Added!`
+      })
+    })
+    .catch( (error) => {
+      this.setState({
+        error: error.message
+      });
+    });
+  }
+  else {
+    console.log('some errors');
+  }
+  }
+
   render() {
     return (
       <div className="App">
+        <p>{this.state.message}</p>
         <header>
+          <h1>Poseiden Rental</h1>
           <button className="see-library" onClick={this.showLibrary}>
             Poseiden Faves
           </button>
           <button className="see-customers" onClick={this.showCustomers}>
             Poseiden Customers
           </button>
-          <p>Selected Movie: {this.state.rentalMovie} Selected Customer: {this.state.rentalCustomer}</p>
+          <section className="rental">
+          <p>Selected Movie: {this.state.rentalMovie}</p>
+          <p>Selected Customer: {this.state.rentalCustomer.name}</p>
+          <button className="create-rental" onClick={this.createRental}>
+            Create Rental
+          </button>
+          </section>
+          <section className="search-form">
+          <SearchForm
+            searchMovie={this.searchMovieAPICall}
+           />
+          </section>
         </header>
 
-        <SearchForm
-          searchMovie={this.searchMovieAPICall}
-         />
-
-        <section>
+        <section className="display">
           {this.state.movies}
           {this.state.customers}
         </section>
