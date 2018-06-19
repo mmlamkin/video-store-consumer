@@ -34,24 +34,21 @@ class SearchForm extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-      <div key="movieName">
-      <label htmlFor="movieName">Movie: </label>
-      <input
-      id="movieName"
-      name="movieName"
-      value={this.state.movieName}
-      onChange={this.onFieldChange}
-      type="text"
-      />
-      </div>
+        <div key="movieName">
+          <label htmlFor="movieName">Movie: </label>
+          <input
+            id="movieName"
+            name="movieName"
+            value={this.state.movieName}
+            onChange={this.onFieldChange}
+            type="text"
+          />
+        </div>
 
-      <div>
-      {this.props.test}
-      </div>
-      <input
-      type="submit"
-      value="Search"
-      />
+        <input
+        type="submit"
+        value="Search"
+        />
       </form>
     );
   }
