@@ -28,6 +28,7 @@ class SearchResults extends Component {
       })
     })
     .catch(() => {
+      console.log(this.state.movies);
       this.setState({
         error: 'Sorry, no movies match your description'
       })
