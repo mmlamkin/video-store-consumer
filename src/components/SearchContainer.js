@@ -5,6 +5,7 @@ import './Library.css';
 import Movie from './Movie'
 import SearchForm from './SearchForm'
 import SearchResults from './SearchResults'
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 
@@ -35,14 +36,17 @@ class SearchContainer extends Component {
   render() {
 
     return (
-      <section>
-        <SearchForm
-          test="This is the SearchForm"
-          searchTerm={this.defMovieName}
-        />
-
-        {this.state.movieName ? this.defSearchMovie() : ''}
-      </section>
+      <Router>
+        <section>
+          <Link to={'/search'}>
+            <SearchForm
+              test="This is the SearchForm"
+              searchTerm={this.defMovieName}
+            />
+            {this.state.movieName ? this.defSearchMovie() : ''}
+          </Link>
+        </section>
+      </Router>
     )
   }
 

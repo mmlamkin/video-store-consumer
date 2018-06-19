@@ -4,7 +4,7 @@ import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 
 class App extends Component {
@@ -12,8 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      movies: [],
-      customers: [],
+
       rentalMovie: '',
       rentalCustomer: {},
       gists: null,
@@ -21,10 +20,7 @@ class App extends Component {
   }
 
   showLibrary = (event) => {
-    this.setState({
-      movies: <Library url="http://localhost:3000/movies" updateRentalCallback={this.updateRentalMovie}/>,
-      customers: []
-    });
+    return <Library updateRentalCallback={this.updateRentalMovie}/>
   }
 
   showCustomers = (event) => {
@@ -80,19 +76,17 @@ class App extends Component {
   }
 
   render() {
-    const { gists } = this.state
     return (
       <Router>
         <div className="App">
           <p>{this.state.message}</p>
           <header>
             <h1>Poseiden Rental</h1>
-
-            <Link to={'/library'}>
-              <button className="see-library" onClick={this.showLibrary}>
-                Poseiden Faves
-              </button>
-            </Link>
+             <Link to={'/library'}>
+                <button className="see-library" onClick={this.showLibrary}>
+                  Poseiden Faves
+                </button>
+              </Link>
 
             <Link to={'/customers'}>
               <button className="see-customers" onClick={this.showCustomers}>
@@ -112,10 +106,14 @@ class App extends Component {
             </section>
           </header>
 
-          <section className="display">
-            {this.state.movies}
-            {this.state.customers}
-          </section>
+          <Route path="/library" render={() => (
+            <Library updateRentalCallback={this.updateRentalMovie}/>
+          )}/>
+
+          <Route path="/customers" render={() => (
+            <Library updateRentalCallback={this.updateRentalMovie}/>
+          )}/>
+
         </div>
       </Router>
     );

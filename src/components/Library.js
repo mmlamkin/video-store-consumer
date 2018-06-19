@@ -7,19 +7,20 @@ import Movie from './Movie'
 class Library extends Component {
 
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    movies: [],
-  };
-}
+    this.state = {
+      movies: [],
+      url: "http://localhost:3000/movies",
+    };
+  }
 
   componentDidMount = () => {
-    axios.get(`${this.props.url}`)
-    .then( (response) => {
+    axios.get(`${this.state.url}`)
 
+    .then( (response) => {
       this.setState({
-        movies: response.data
+        movies: response.data,
       });
     })
     .catch( (error) => {
@@ -34,15 +35,16 @@ class Library extends Component {
   }
 
   renderMovies = () => {
+    console.log(this.state.movies);
     const movieLibrary = this.state.movies.map((movie, index) => {
 
       return (
         <Movie
-          key={index}
-          image_url={movie.image_url}
-          title={movie.title}
-          release_date={movie.release_date}
-          addMovieToRentalCallback={this.updateRental}
+        key={index}
+        image_url={movie.image_url}
+        title={movie.title}
+        release_date={movie.release_date}
+        addMovieToRentalCallback={this.updateRental}
         />
       );
     });
@@ -53,17 +55,17 @@ class Library extends Component {
   render() {
 
     const anyErrors = () => {
-    if (this.state.error) {
-      return <p>{this.state.error}</p>
+      if (this.state.error) {
+        return <p>{this.state.error}</p>
+      }
     }
-  }
 
     return (
       <section>
       <span>{anyErrors()}</span>
-        <div className='movie-library'>
-          {this.renderMovies()}
-        </div>
+      <div className='movie-library'>
+      {this.renderMovies()}
+      </div>
       </section>
     )
   }
