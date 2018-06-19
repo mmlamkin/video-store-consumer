@@ -21,13 +21,15 @@ class SearchResults extends Component {
       console.log(response);
 
       let results = response.data;
-      results.isArray() === 'object' ? results = [results]: '';
+
+      typeof(results) === 'object' ? results = [results]: '';
 
       this.setState({
         movies: results,
-      })
+      });
     })
     .catch(() => {
+      console.log(this.state.movies);
       this.setState({
         error: 'Sorry, no movies match your description'
       })
@@ -37,7 +39,6 @@ class SearchResults extends Component {
   showMovies = () => {
 
     const movieLibrary = this.state.movies.map((movie, index) => {
-
       return (
         <Movie
           key={index}

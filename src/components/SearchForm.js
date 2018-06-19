@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import './SearchForm.css'
 
 
@@ -34,25 +33,25 @@ class SearchForm extends Component {
     this.clearForm();
   }
 
-  render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>
-      <div key="movieName">
-      <label htmlFor="movieName">Find a Movie: </label>
-      <input
-      id="movieName"
-      name="movieName"
-      value={this.state.movieName}
-      onChange={this.onFieldChange}
-      type="text"
-      />
-      </div>
+    render() {
+      return (
+        <form onSubmit={this.onFormSubmit}>
+          <div key="movieName">
+            <label htmlFor="movieName">Find a Movie: </label>
+            <input
+              id="movieName"
+              name="movieName"
+              value={this.state.movieName}
+              onChange={this.onFieldChange}
+              type="text"
+             />
+          </div>
 
-      <input
-      type="submit"
-      value="Search"
-      />
-      </form>
+          <input
+          type="submit"
+          value="Search"
+          />
+        </form>
     );
   }
 

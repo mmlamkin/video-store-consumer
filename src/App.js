@@ -19,7 +19,7 @@ class App extends Component {
     };
   }
   componentDidMount = () => {
-    let interval = setInterval(this.timer, 5000);
+    let interval = setInterval(this.timer, 10000);
 
   }
 
