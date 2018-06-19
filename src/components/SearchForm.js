@@ -26,16 +26,11 @@ class SearchForm extends Component {
       });
     }
 
-
-
-    //eventually will pull the searchapi call function from props
     onFormSubmit = (event) => {
       event.preventDefault();
-      console.log(this.state.movieName);
-      this.props.searchMovie(this.state.movieName);
+      // this.props.callbackName(this.state.movieName)
       this.clearForm();
     }
-
 
     render() {
       return (
@@ -50,7 +45,9 @@ class SearchForm extends Component {
               type="text"
              />
           </div>
-
+          <div>
+            {this.props.test}
+          </div>
           <input
             type="submit"
             value="Search"
