@@ -22,7 +22,7 @@ class SearchResults extends Component {
 
       let results = response.data;
 
-      typeof(results) === 'object' ? results = [results]: '';
+      typeOFresults === 'object' ? results = [results]: '';
 
       this.setState({
         movies: results,

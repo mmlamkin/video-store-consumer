@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './SearchForm.css'
-
+import axios from 'axios';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -29,24 +28,26 @@ class SearchForm extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.searchTerm(this.state.movieName);
     this.clearForm();
   }
 
-    render() {
-      return (
-        <form onSubmit={this.onFormSubmit}>
-          <div key="movieName">
-            <label htmlFor="movieName">Find a Movie: </label>
-            <input
-              id="movieName"
-              name="movieName"
-              value={this.state.movieName}
-              onChange={this.onFieldChange}
-              type="text"
-             />
-          </div>
+  render() {
+    return (
+      <form onSubmit={this.onFormSubmit}>
+      <div key="movieName">
+      <label htmlFor="movieName">Movie: </label>
+      <input
+      id="movieName"
+      name="movieName"
+      value={this.state.movieName}
+      onChange={this.onFieldChange}
+      type="text"
+      />
+      </div>
 
+      <div>
+      {this.props.test}
+      </div>
       <input
       type="submit"
       value="Search"
@@ -57,7 +58,7 @@ class SearchForm extends Component {
 }
 
 SearchForm.propTypes = {
-  searchTerm: PropTypes.func,
+  defMovieName: PropTypes.func,
   test: PropTypes.string,
 }
 
