@@ -4,7 +4,7 @@ import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
-import { BrowserRouter as Router } from 'react router dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 
@@ -13,17 +13,14 @@ class App extends Component {
     super(props);
 
     this.state = {
-      movies: [],
-      customers: [],
       rentalMovie: '',
       rentalCustomer: {}
     };
   }
+
   componentDidMount = () => {
     let interval = setInterval(this.timer, 10000);
-
   }
-
 
   timer = () => {
     this.setState({
@@ -87,7 +84,6 @@ class App extends Component {
     })
   }
 
-
   render() {
 
     const anyErrors = () => {
@@ -96,14 +92,14 @@ class App extends Component {
     }
   }
     return (
+      <Router>
       <div className="App">
         <p>{this.state.message}</p>
         <span>{anyErrors()}</span>
         <header>
           <h1>Poseiden Rental</h1>
-          <button className="see-library" onClick={this.showLibrary}>
-            Poseiden Faves
-          </button>
+
+          <Link to="/library">Library</Link>
           <button className="see-customers" onClick={this.showCustomers}>
             Poseiden Customers
           </button>
@@ -120,14 +116,18 @@ class App extends Component {
         </header>
 
         <section className="display">
-          {this.state.movies}
-          {this.state.customers}
+        
         </section>
 
 
       </div>
+      </Router>
     );
   }
 }
+
+// <button className="see-library" onClick={this.showLibrary}>
+//   Poseiden Faves
+// </button>
 
 export default App;
