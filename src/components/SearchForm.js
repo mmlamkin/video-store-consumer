@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './SearchForm.css'
 
+
 class SearchForm extends Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        movieName: '',
-      };
-    }
+    this.state = {
+      movieName: '',
+    };
+  }
 
-    onFieldChange = (event) => {
+  onFieldChange = (event) => {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
     const updateState = {};
@@ -21,21 +22,31 @@ class SearchForm extends Component {
     this.setState(updateState);
   }
 
-    clearForm = () => {
-      this.setState({
-        movieName: '',
-      });
-    }
+  clearForm = () => {
+    this.setState({
+      movieName: '',
+    });
+  }
 
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.searchTerm(this.state.movieName);
+    this.clearForm();
+  }
 
-
-    //eventually will pull the searchapi call function from props
-    onFormSubmit = (event) => {
-      event.preventDefault();
-      console.log(this.state.movieName);
-      this.props.searchMovie(this.state.movieName);
-      this.clearForm();
-    }
+  render() {
+    return (
+      <form onSubmit={this.onFormSubmit}>
+      <div key="movieName">
+        <label htmlFor="movieName">Movie: </label>
+        <input
+          id="movieName"
+          name="movieName"
+          value={this.state.movieName}
+          onChange={this.onFieldChange}
+          type="text"
+        />
+      </div>
 
 
     render() {
@@ -52,16 +63,18 @@ class SearchForm extends Component {
              />
           </div>
 
-          <input
-            type="submit"
-            value="Search"
-          />
-        </form>
-      );
-    }
+      <input
+      type="submit"
+      value="Search"
+      />
+      </form>
+    );
   }
+}
 
-  SearchForm.propTypes = {
-  }
+SearchForm.propTypes = {
+  searchTerm: PropTypes.func,
+  test: PropTypes.string,
+}
 
 export default SearchForm;

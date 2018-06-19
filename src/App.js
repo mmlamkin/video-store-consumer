@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
-import SearchForm from './components/SearchForm';
+import SearchContainer from './components/SearchContainer';
 import axios from 'axios';
 
 
@@ -32,6 +32,7 @@ class App extends Component {
     });
   }
 
+<<<<<<< HEAD
   updateRentalCustomer = (name, id) => {
     this.setState({
       rentalCustomer: {'name': name,
@@ -107,6 +108,7 @@ class App extends Component {
           {this.state.movies}
           {this.state.customers}
         </section>
+
 
       </div>
     );
