@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Movie.css';
+import axios from 'axios';
+import './Customer.css';
 
-class Movie extends Component {
+class Customer extends Component {
 
 
   render() {
@@ -18,10 +19,5 @@ class Movie extends Component {
 
 }
 
-Movie.propTypes = {
-  release_date: PropTypes.string,
-  title: PropTypes.string,
-  image_url: PropTypes.string,
-};
 
 export default Movie;

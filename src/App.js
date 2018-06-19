@@ -13,6 +13,8 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
+      rentalMovie: '',
+      rentalCustomer: ''
     };
   }
 
@@ -26,7 +28,7 @@ class App extends Component {
   showCustomers = (event) => {
     this.setState({
       movies: [],
-      customers: <CustomerList url="http://localhost:3000/customers"/>
+      customers: <CustomerList url="http://localhost:3000/customers" addCustomerCallback={this.updateRental}/>
     });
   }
 
