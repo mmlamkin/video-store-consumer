@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './Movie.css';
+import './Customer.css';
 
-class Movie extends Component {
+class Customer extends Component {
 
 
   render() {

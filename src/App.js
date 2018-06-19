@@ -13,6 +13,8 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
+      rentalMovie: '',
+      rentalCustomer: ''
     };
   }
 
@@ -22,8 +24,6 @@ class App extends Component {
       customers: []
     });
   }
-
-
 
   showCustomers = (event) => {
     this.setState({
