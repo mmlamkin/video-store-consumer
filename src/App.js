@@ -15,7 +15,8 @@ class App extends Component {
       movies: [],
       customers: [],
       rentalMovie: '',
-      rentalCustomer: {}
+      rentalCustomer: {},
+      gists: null,
     };
   }
 
@@ -79,36 +80,43 @@ class App extends Component {
   }
 
   render() {
-
+    const { gists } = this.state
     return (
       <Router>
-      <div className="App">
-        <p>{this.state.message}</p>
-        <header>
-          <h1>Poseiden Rental</h1>
-          <button className="see-library" onClick={this.showLibrary}>
-            Poseiden Faves
-          </button>
-          <button className="see-customers" onClick={this.showCustomers}>
-            Poseiden Customers
-          </button>
-          <section className="rental">
-          <p>Selected Movie: {this.state.rentalMovie}</p>
-          <p>Selected Customer: {this.state.rentalCustomer.name}</p>
-          <button className="create-rental" onClick={this.createRental}>
-            Create Rental
-          </button>
-          </section>
-          <section className="search-form">
-          <SearchContainer/>
-          </section>
-        </header>
+        <div className="App">
+          <p>{this.state.message}</p>
+          <header>
+            <h1>Poseiden Rental</h1>
 
-        <section className="display">
-          {this.state.movies}
-          {this.state.customers}
-        </section>
-      </div>
+            <Link to={'/library'}>
+              <button className="see-library" onClick={this.showLibrary}>
+                Poseiden Faves
+              </button>
+            </Link>
+
+            <Link to={'/customers'}>
+              <button className="see-customers" onClick={this.showCustomers}>
+                Poseiden Customers
+              </button>
+            </Link>
+
+            <section className="rental">
+            <p>Selected Movie: {this.state.rentalMovie}</p>
+            <p>Selected Customer: {this.state.rentalCustomer.name}</p>
+            <button className="create-rental" onClick={this.createRental}>
+              Create Rental
+            </button>
+            </section>
+            <section className="search-form">
+            <SearchContainer/>
+            </section>
+          </header>
+
+          <section className="display">
+            {this.state.movies}
+            {this.state.customers}
+          </section>
+        </div>
       </Router>
     );
   }
