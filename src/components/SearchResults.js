@@ -22,7 +22,7 @@ class SearchResults extends Component {
 
       let results = response.data;
 
-      results.isArray() === 'object' ? results = [results]: '';
+      typeof(results) === 'object' ? results = [results]: '';
 
       this.setState({
         movies: results,
@@ -39,7 +39,6 @@ class SearchResults extends Component {
   showMovies = () => {
 
     const movieLibrary = this.state.movies.map((movie, index) => {
-
       return (
         <Movie
           key={index}
