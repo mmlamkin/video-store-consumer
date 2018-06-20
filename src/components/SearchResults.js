@@ -56,13 +56,9 @@ class SearchResults extends Component {
 
     return (
       <section>
-      <span>{this.state.error ? this.state.error : ''}</span>
+        <span>{this.state.error ? this.state.error : ''}</span>
         <div className='movie-library'>
           {this.state.movies ? this.showMovies() : ''}
-        </div>
-
-        <div>
-          {this.props.test}
         </div>
       </section>
     )
@@ -71,8 +67,7 @@ class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
-  movieName: PropTypes.string,
-  test: PropTypes.string,
+  searchTitle: PropTypes.string,
   movies: PropTypes.array,
 };
 
