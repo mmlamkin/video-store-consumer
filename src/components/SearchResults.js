@@ -16,16 +16,11 @@ class SearchResults extends Component {
 }
 
   componentDidMount = () => {
-    axios.get(`http://localhost:3000/movies/${this.props.searchTitle}`)
+    axios.get(`http://localhost:3000/movies?query=${this.props.searchTitle}`)
     .then ((response) => {
-      console.log(response);
-
-      let results = response.data;
-
-      typeof(results) === 'object' ? results = [results]: '';
 
       this.setState({
-        movies: results,
+        movies: response.data,
       });
     })
     .catch(() => {
