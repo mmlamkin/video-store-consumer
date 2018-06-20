@@ -31,16 +31,28 @@ class SearchResults extends Component {
     });
   }
 
+  addToLib = () =>{
+    this.setState({
+      message: "added movie to library"
+    })
+  }
+
   showMovies = () => {
 
     const movieLibrary = this.state.movies.map((movie, index) => {
       return (
-        <Movie
-          key={index}
-          image_url={movie.image_url}
-          title={movie.title}
-          release_date={movie.release_date}
-        />
+        <div>
+          <Movie
+            key={index}
+            image_url={movie.image_url}
+            title={movie.title}
+            release_date={movie.release_date}
+          />
+
+          <button className="rental-movie" onClick={this.addToLib}>
+            Add Movie to Library
+          </button>
+        </div>
       );
     });
 
@@ -51,6 +63,7 @@ class SearchResults extends Component {
 
     return (
       <section>
+        <span>{this.state.message}</span>
         <span>{this.state.error ? this.state.error : ''}</span>
         <div className='movie-library'>
           {this.state.movies ? this.showMovies() : ''}
