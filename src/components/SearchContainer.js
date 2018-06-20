@@ -17,31 +17,21 @@ class SearchContainer extends Component {
     };
   }
 
-  defMovieName = (title) => {
+  defMovieName = () => {
     this.setState({
-      movieName: title,
+      movieName: this.props.movieName,
     })
   }
 
-  defSearchMovie = () => {
-    return (
-      <SearchResults
-        test="This is the SerchResults"
-        movieName={this.state.movieName}
-      />
-    )
-  }
 
   render() {
 
     return (
       <section>
-        <SearchForm
-          test="This is the SearchForm"
-          searchTerm={this.defMovieName}
+        <SearchForm/>
+        <SearchResults
+          searchTitle={this.props.movieName}
         />
-
-        {this.state.movieName ? this.defSearchMovie() : ''}
       </section>
     )
   }

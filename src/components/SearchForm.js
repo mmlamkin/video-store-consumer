@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -26,8 +25,13 @@ class SearchForm extends Component {
     });
   }
 
+  defMovieName = () => {
+    this.props.setMovieName(this.state.movieName);
+  }
+
   onFormSubmit = (event) => {
     event.preventDefault();
+    this.defMovieName();
     this.clearForm();
   }
 

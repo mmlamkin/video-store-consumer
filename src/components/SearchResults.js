@@ -14,7 +14,7 @@ class SearchResults extends Component {
     movies: [],
   };
 }
-// this should only be run once search button is clicked
+
   componentDidMount = () => {
     axios.get(`http://localhost:3000/movies/${this.props.movieName}`)
     .then ((response) => {
