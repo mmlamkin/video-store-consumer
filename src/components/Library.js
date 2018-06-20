@@ -62,10 +62,10 @@ class Library extends Component {
 
     return (
       <section>
-      <span>{anyErrors()}</span>
-      <div className='movie-library'>
-      {this.renderMovies()}
-      </div>
+        <span>{anyErrors()}</span>
+        <div className='movie-library'>
+          {this.renderMovies()}
+        </div>
       </section>
     )
   }

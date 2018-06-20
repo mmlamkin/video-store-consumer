@@ -1,5 +1,9 @@
 .movie {
   display: flex;
   flex-direction: column;
-  margin: .8%;
+  padding: 1em;
+}
+
+.movie, p {
+  margin: .2em;
 }

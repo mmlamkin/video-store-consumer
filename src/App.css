@@ -26,3 +26,8 @@ header {
   margin-right: 10%;
   margin-top: 2%;
 }
+
+h1 {
+  font-size: 2em;
+  padding-top: .8em;
+}

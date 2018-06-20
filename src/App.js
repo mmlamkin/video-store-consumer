@@ -84,7 +84,7 @@ class App extends Component {
 
           <header>
 
-            <h1>Poseiden Rental</h1>
+            <h1>Poseiden Rentals</h1>
 
             <Link to={'/'}>
               <button className="see-customers">
@@ -124,8 +124,6 @@ class App extends Component {
               <SearchContainer/>
             </section>
 
-
-
           </header>
 
           <p>{this.state.message}</p>
@@ -153,9 +151,5 @@ class App extends Component {
     );
   }
 }
-
-// <button className="see-library" onClick={this.showLibrary}>
-//   Poseiden Faves
-// </button>
 
 export default App;
