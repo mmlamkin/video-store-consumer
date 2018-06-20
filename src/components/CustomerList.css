@@ -1,3 +1,5 @@
 .customers {
-  width: 80%;
+  display: grid;
+  grid-template: auto/1fr 1fr;
+  margin-left: 5%
 }

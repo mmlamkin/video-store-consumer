@@ -5,6 +5,7 @@ import './Library.css';
 import Movie from './Movie'
 import SearchForm from './SearchForm'
 import SearchResults from './SearchResults'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 
 
@@ -17,6 +18,12 @@ class SearchContainer extends Component {
     };
   }
 
+  updateRentalMovie = (title) => {
+    this.setState({
+      rentalMovie: title
+    })
+  }
+
   defMovieName = (title) => {
     this.setState({
       movieName: title,
@@ -24,25 +31,37 @@ class SearchContainer extends Component {
   }
 
   defSearchMovie = () => {
-    return (
+    return(
       <SearchResults
-        test="This is the SerchResults"
-        movieName={this.state.movieName}
+        searchTitle={this.state.movieName}
       />
     )
   }
 
+  setMovieName= (title) => {
+    this.setState({
+      movieName: title,
+    })
+  }
+
+  showSearchPage = () => {
+     return (
+       <SearchForm
+        setMovieName={this.setMovieName}
+       />
+     )
+  }
+
   render() {
+    return(
+      <Route path="/search" render={() => (
+        <div>
+          {this.showSearchPage()}
+          <h1>{this.state.movieName}</h1>
+          {this.state.movieName ? this.defSearchMovie() : ''}
+        </div>
 
-    return (
-      <section>
-        <SearchForm
-          test="This is the SearchForm"
-          searchTerm={this.defMovieName}
-        />
-
-        {this.state.movieName ? this.defSearchMovie() : ''}
-      </section>
+      )}/>
     )
   }
 

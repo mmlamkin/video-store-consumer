@@ -14,18 +14,13 @@ class SearchResults extends Component {
     movies: [],
   };
 }
-// this should only be run once search button is clicked
+
   componentDidMount = () => {
-    axios.get(`http://localhost:3000/movies/${this.props.movieName}`)
+    axios.get(`http://localhost:3000/movies?query=${this.props.searchTitle}`)
     .then ((response) => {
-      console.log(response);
-
-      let results = response.data;
-
-      typeOFresults === 'object' ? results = [results]: '';
 
       this.setState({
-        movies: results,
+        movies: response.data,
       });
     })
     .catch(() => {
@@ -56,13 +51,9 @@ class SearchResults extends Component {
 
     return (
       <section>
-      <span>{this.state.error ? this.state.error : ''}</span>
+        <span>{this.state.error ? this.state.error : ''}</span>
         <div className='movie-library'>
           {this.state.movies ? this.showMovies() : ''}
-        </div>
-
-        <div>
-          {this.props.test}
         </div>
       </section>
     )
@@ -71,8 +62,7 @@ class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
-  movieName: PropTypes.string,
-  test: PropTypes.string,
+  searchTitle: PropTypes.string,
   movies: PropTypes.array,
 };
 
