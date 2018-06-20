@@ -31,9 +31,10 @@ class SearchResults extends Component {
     });
   }
 
-  addToLib = () =>{
+  addToLib = (movie) =>{
+    //api post request with movie
     this.setState({
-      message: "added movie to library"
+      message: `added  ${movie.title} to library`
     })
   }
 
@@ -49,7 +50,7 @@ class SearchResults extends Component {
             release_date={movie.release_date}
           />
 
-          <button className="rental-movie" onClick={this.addToLib}>
+          <button className="rental-movie" onClick={ () => {this.addToLib(movie)}}>
             Add Movie to Library
           </button>
         </div>
