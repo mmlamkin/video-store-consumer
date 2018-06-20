@@ -31,7 +31,8 @@ class SearchForm extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.defMovieName();
+    this.props.clearSearchCallback();
+    this.props.movieSearchCallback(this.state.movieName);
     this.clearForm();
   }
 

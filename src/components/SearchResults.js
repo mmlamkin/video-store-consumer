@@ -3,61 +3,73 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Library.css';
 import Movie from './Movie'
+import SearchForm from './SearchForm'
 
 
 class SearchResults extends Component {
 
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    movies: [],
-  };
-}
+    this.state = {
+      movies: [],
+    };
+  }
 
-  componentDidMount = () => {
-    axios.get(`http://localhost:3000/movies?query=${this.props.searchTitle}`)
+  movieSearch = (title) => {
+
+    axios.get(`http://localhost:3000/movies?query=${title}`)
+
     .then ((response) => {
-
       this.setState({
-        movies: response.data,
+      movies: response.data,
       });
+        console.log(this.state.movies)
     })
-    .catch(() => {
+    .catch((error) => {
       console.log(this.state.movies);
       this.setState({
-        error: 'Sorry, no movies match your description'
+        error: error.message
       })
     });
   }
 
+  clearSearch = () => {
+    this.setState({
+      movies: []
+    })
+  }
+
   showMovies = () => {
-
     const movieLibrary = this.state.movies.map((movie, index) => {
-      return (
-        <Movie
-          key={index}
-          image_url={movie.image_url}
-          title={movie.title}
-          release_date={movie.release_date}
-        />
-      );
-    });
-
-    return movieLibrary
-  }
-
-  render() {
-
     return (
-      <section>
-        <span>{this.state.error ? this.state.error : ''}</span>
-        <div className='movie-library'>
-          {this.state.movies ? this.showMovies() : ''}
-        </div>
-      </section>
-    )
-  }
+      <Movie
+      key={index}
+      image_url={movie.image_url}
+      title={movie.title}
+      release_date={movie.release_date}
+      />
+    );
+  });
+  return movieLibrary
+}
+
+
+render() {
+
+  return (
+    <section>
+      <SearchForm
+      clearSearchCallback={this.clearSearch}
+      movieSearchCallback={this.movieSearch}
+      />
+      <span>{this.state.error ? this.state.error : ''}</span>
+      <div className='movie-library'>
+        {this.showMovies()}
+      </div>
+    </section>
+  )
+}
 
 }
 
