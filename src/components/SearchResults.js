@@ -33,7 +33,7 @@ class SearchResults extends Component {
 
   addToLib = (movie) =>{
 
-    axios.post(`http://localhost:3000/movies/addLibrary`, movie)
+    axios.post(`http://localhost:3000/addLibrary`, movie)
     .then( () => {
       //api post request with movie
       this.setState({
