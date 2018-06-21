@@ -31,9 +31,18 @@ class SearchResults extends Component {
     });
   }
 
-  addToLib = (movie) =>{
-
-    axios.post(`http://localhost:3000/addLibrary`, movie)
+  addToLib = (movie) => {
+    axios.post('http://localhost:3000/add_movie',
+  //   {
+  //     title:'Cruel Jaws',
+  //     overview: 'A tiger shark bred by the Navy\
+  //      as a killing machine is wrecking havoc\
+  //       in the sleepy tourist town of Hampton Bay.',
+  //     release_date:'1995-05-05',
+  //     image_url:'https://image.tmdb.org/t/p/w185/tq9swm2dKN0bNb48HArwSDGuF12.jpg',
+  //     external_id: '84060',
+  // }
+  movie)
     .then( () => {
       //api post request with movie
       this.setState({
