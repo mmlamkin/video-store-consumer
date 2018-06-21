@@ -4,8 +4,6 @@ import Library from './components/Library';
 import CustomerList from './components/CustomerList';
 import axios from 'axios';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import SearchContainer from './components/SearchForm'
-import SearchForm from './components/SearchForm'
 import SearchResults from './components/SearchResults'
 
 

@@ -53,7 +53,9 @@ class SearchResults extends Component {
   }
 
   addToLib = (movie) =>{
-
+    let picture = movie.image_url.split('/w185')
+    movie.image_url = picture[1]
+    
     axios.post(`http://localhost:3000/add_movie/`, movie)
 
     .then( () => {
@@ -63,15 +65,17 @@ class SearchResults extends Component {
     })
     .catch( (error) => {
       this.setState({
-        message: 'Movie is already available for rent',
+        message: 'Movie is already available in library',
         error: error.message
       });
     });
   }
 
 
+
   showMovies = () => {
     const movieLibrary = this.state.movies.map((movie, index) => {
+
       return (
         <div>
           <Movie
