@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       rentalMovie: '',
       rentalCustomer: {},
-
+      movieLib: [],
     };
   }
 
@@ -40,6 +40,12 @@ class App extends Component {
   }
 
   updateRentalMovie = (title) => {
+    this.setState({
+      rentalMovie: title
+    })
+  }
+
+  updateMovieLib = (title) => {
     this.setState({
       rentalMovie: title
     })

@@ -22,9 +22,9 @@ class SearchResults extends Component {
 
     .then ((response) => {
       this.setState({
-      movies: response.data,
+        movies: response.data,
       });
-        console.log(this.state.movies)
+      console.log(this.state.movies)
     })
     .catch((error) => {
       console.log(this.state.movies);
@@ -34,48 +34,66 @@ class SearchResults extends Component {
     });
   }
 
+
   clearSearch = () => {
     this.setState({
       movies: []
     })
   }
 
-  showMovies = () => {
-    const movieLibrary = this.state.movies.map((movie, index) => {
+  addToLib = (movie) =>{
+
+    axios.post(`http://localhost:3000/movies/addLib`, movie)
+    .then( () => {
+      //api post request with movie
+      this.setState({
+        message: `added ${movie.title} to library`
+      })
+    })
+    .catch( (error) => {
+      this.setState({
+        error: error.message
+      });
+    });
+  }
+
+
+    showMovies = () => {
+      const movieLibrary = this.state.movies.map((movie, index) => {
+        return (
+          <Movie
+          key={index}
+          image_url={movie.image_url}
+          title={movie.title}
+          release_date={movie.release_date}
+          />
+        );
+      });
+      return movieLibrary
+    }
+
+
+  render() {
+
     return (
-      <Movie
-      key={index}
-      image_url={movie.image_url}
-      title={movie.title}
-      release_date={movie.release_date}
-      />
-    );
-  });
-  return movieLibrary
-}
-
-
-render() {
-
-  return (
-    <section>
+      <section>
       <SearchForm
       clearSearchCallback={this.clearSearch}
       movieSearchCallback={this.movieSearch}
       />
       <span>{this.state.error ? this.state.error : ''}</span>
       <div className='movie-library'>
-        {this.showMovies()}
+      {this.showMovies()}
       </div>
-    </section>
-  )
+      </section>
+    )
+  }
 }
 
-}
+  SearchResults.PropTypes = {
+    searchTitle: PropTypes.string,
+    movies: PropTypes.array,
+  };
 
-SearchResults.propTypes = {
-  searchTitle: PropTypes.string,
-  movies: PropTypes.array,
-};
 
-export default SearchResults;
+  export default SearchResults;
