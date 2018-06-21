@@ -23,7 +23,7 @@ class Customer extends Component {
 
 }
 
-CustomerList.PropTypes = {
+Customer.PropTypes = {
   updateRentalCallback: PropTypes.func.required,
   url: PropTypes.string
 };
