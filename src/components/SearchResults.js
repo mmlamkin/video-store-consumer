@@ -16,6 +16,17 @@ class SearchResults extends Component {
     };
   }
 
+  componentDidMount = () => {
+    let interval = setInterval(this.timer, 10000);
+  }
+
+  timer = () => {
+    this.setState({
+      message: '',
+      error: ''
+    })
+  }
+
   movieSearch = (title) => {
 
     axios.get(`http://localhost:3000/movies?query=${title}`)
@@ -42,16 +53,19 @@ class SearchResults extends Component {
 
   addToLib = (movie) =>{
 
-    axios.post(`http://localhost:3000/movies/addLib`, movie)
+    axios.post(`http://localhost:3000/add_movie/`, movie)
 
     .then( () => {
       //api post request with movie
       this.setState({
-        message: `added ${movie.title} to library`
+        message: `Added ${movie.title} to library`
       })
     })
     .catch( (error) => {
+
+    console.log(error);
       this.setState({
+
         error: error.message
       });
     });
@@ -84,11 +98,13 @@ class SearchResults extends Component {
 
     return (
       <section>
+
       <SearchForm
       clearSearchCallback={this.clearSearch}
       movieSearchCallback={this.movieSearch}
       />
       <span>{this.state.error ? this.state.error : ''}</span>
+      <span>{this.state.message ? this.state.message : ''}</span>
       <div className='movie-library'>
       {this.showMovies()}
       </div>
