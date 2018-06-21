@@ -8,6 +8,7 @@ import SearchContainer from './components/SearchForm'
 import SearchForm from './components/SearchForm'
 import SearchResults from './components/SearchResults'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -81,10 +82,11 @@ class App extends Component {
   render() {
     const anyErrors = () => {
       if (this.state.error) {
-        return <p>{this.state.error}</p>
+        return <p className="error">{this.state.error}</p>
       }
     }
     return (
+
       <Router>
         <div className="App">
           <header>
@@ -123,7 +125,7 @@ class App extends Component {
             </Link>
           </nav>
 
-          <p>{this.state.message}</p>
+          <p className="message">{this.state.message}</p>
 
       <section className="display">
       <Route exact={true} path="/" render={() => (
@@ -145,6 +147,7 @@ class App extends Component {
       </div>
 
       </Router>
+
     );
   }
 }

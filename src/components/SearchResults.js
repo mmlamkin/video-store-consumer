@@ -6,6 +6,7 @@ import Movie from './Movie'
 import SearchForm from './SearchForm'
 
 
+
 class SearchResults extends Component {
 
   constructor(props) {
@@ -56,16 +57,13 @@ class SearchResults extends Component {
     axios.post(`http://localhost:3000/add_movie/`, movie)
 
     .then( () => {
-      //api post request with movie
       this.setState({
         message: `Added ${movie.title} to library`
       })
     })
     .catch( (error) => {
-
-    console.log(error);
       this.setState({
-
+        message: 'Movie is already available for rent',
         error: error.message
       });
     });
@@ -97,18 +95,20 @@ class SearchResults extends Component {
   render() {
 
     return (
+
       <section>
 
-      <SearchForm
-      clearSearchCallback={this.clearSearch}
-      movieSearchCallback={this.movieSearch}
-      />
-      <span>{this.state.error ? this.state.error : ''}</span>
-      <span>{this.state.message ? this.state.message : ''}</span>
-      <div className='movie-library'>
-      {this.showMovies()}
-      </div>
+        <SearchForm
+          clearSearchCallback={this.clearSearch}
+          movieSearchCallback={this.movieSearch}
+        />
+        <p className="error">{this.state.error ? this.state.error : ''}</p>
+        <p className="message">{this.state.message ? this.state.message : ''}</p>
+        <div className='movie-library'>
+          {this.showMovies()}
+        </div>
       </section>
+
     )
   }
 }

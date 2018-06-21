@@ -36,6 +36,12 @@ nav {
   background-color: black;
 }
 
-button {
+.error {
+  font-weight: bold;
+  color: red;
+}
 
+.message {
+  font-weight: bold;
+  color: green;
 }

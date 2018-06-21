@@ -35,7 +35,7 @@ class Library extends Component {
   }
 
   renderMovies = () => {
-    console.log(this.state.movies);
+
     const movieLibrary = this.state.movies.map((movie, index) => {
 
       return (
@@ -67,16 +67,22 @@ class Library extends Component {
     }
 
     return (
+
       <section>
         <span>{anyErrors()}</span>
         <div className='movie-library'>
           {this.renderMovies()}
         </div>
       </section>
+
     )
   }
 
 }
+
+Library.PropTypes = {
+  updateRentalCallback: PropTypes.func.required,
+};
 
 
 export default Library;

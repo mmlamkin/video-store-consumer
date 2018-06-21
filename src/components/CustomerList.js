@@ -64,5 +64,10 @@ class CustomerList extends Component {
 
 }
 
+CustomerList.PropTypes = {
+  updateRentalCallback: PropTypes.func.required,
+  url: PropTypes.string
+};
+
 
 export default CustomerList;

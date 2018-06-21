@@ -23,5 +23,9 @@ class Customer extends Component {
 
 }
 
+CustomerList.PropTypes = {
+  updateRentalCallback: PropTypes.func.required,
+  url: PropTypes.string
+};
 
 export default Customer;
