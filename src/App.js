@@ -9,9 +9,6 @@ import SearchForm from './components/SearchForm'
 import SearchResults from './components/SearchResults'
 
 
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
