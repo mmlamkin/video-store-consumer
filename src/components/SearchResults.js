@@ -3,46 +3,47 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Library.css';
 import Movie from './Movie'
+import SearchForm from './SearchForm'
 
 
 class SearchResults extends Component {
 
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    movies: [],
-  };
-}
+    this.state = {
+      movies: [],
+    };
+  }
 
-  componentDidMount = () => {
-    axios.get(`http://localhost:3000/movies?query=${this.props.searchTitle}`)
+  movieSearch = (title) => {
+
+    axios.get(`http://localhost:3000/movies?query=${title}`)
+
     .then ((response) => {
-
       this.setState({
         movies: response.data,
       });
+      console.log(this.state.movies)
     })
-    .catch(() => {
+    .catch((error) => {
       console.log(this.state.movies);
       this.setState({
-        error: 'Sorry, no movies match your description'
+        error: error.message
       })
     });
   }
 
-  addToLib = (movie) => {
-    axios.post('http://localhost:3000/add_movie',
-  //   {
-  //     title:'Cruel Jaws',
-  //     overview: 'A tiger shark bred by the Navy\
-  //      as a killing machine is wrecking havoc\
-  //       in the sleepy tourist town of Hampton Bay.',
-  //     release_date:'1995-05-05',
-  //     image_url:'https://image.tmdb.org/t/p/w185/tq9swm2dKN0bNb48HArwSDGuF12.jpg',
-  //     external_id: '84060',
-  // }
-  movie)
+  clearSearch = () => {
+    this.setState({
+      movies: []
+    })
+  }
+
+  addToLib = (movie) =>{
+
+    axios.post(`http://localhost:3000/movies/addLib`, movie)
+
     .then( () => {
       //api post request with movie
       this.setState({
@@ -56,46 +57,43 @@ class SearchResults extends Component {
     });
   }
 
-  showMovies = () => {
 
+  showMovies = () => {
     const movieLibrary = this.state.movies.map((movie, index) => {
       return (
-        <div>
-          <Movie
-            key={index}
-            image_url={movie.image_url}
-            title={movie.title}
-            release_date={movie.release_date}
-          />
-
-          <button className="rental-movie" onClick={ () => {this.addToLib(movie)}}>
-            Add Movie to Library
-          </button>
-        </div>
+        <Movie
+        key={index}
+        image_url={movie.image_url}
+        title={movie.title}
+        release_date={movie.release_date}
+        />
       );
     });
-
     return movieLibrary
   }
+
 
   render() {
 
     return (
       <section>
-        <span>{this.state.message}</span>
-        <span>{this.state.error ? this.state.error : ''}</span>
-        <div className='movie-library'>
-          {this.state.movies ? this.showMovies() : ''}
-        </div>
+      <SearchForm
+      clearSearchCallback={this.clearSearch}
+      movieSearchCallback={this.movieSearch}
+      />
+      <span>{this.state.error ? this.state.error : ''}</span>
+      <div className='movie-library'>
+      {this.showMovies()}
+      </div>
       </section>
     )
   }
-
 }
 
-SearchResults.propTypes = {
+SearchResults.PropTypes = {
   searchTitle: PropTypes.string,
   movies: PropTypes.array,
 };
+
 
 export default SearchResults;

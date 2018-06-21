@@ -10,7 +10,7 @@ header {
   color: white;
   text-align: center;
   text-shadow: 0 0 5px black;
-  
+
 }
 
 .display {
@@ -22,16 +22,20 @@ header {
 .rental {
   float: left;
   margin-left: 10%;
-  margin-top: 2%;
-}
 
-.search-form {
-  float: right;
-  margin-right: 10%;
-  margin-top: 2%;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2.4em;
   padding-top: .8em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+
+button {
+
 }
