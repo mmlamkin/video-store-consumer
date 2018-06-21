@@ -32,10 +32,19 @@ class SearchResults extends Component {
   }
 
   addToLib = (movie) =>{
-    //api post request with movie
-    this.setState({
-      message: `added  ${movie.title} to library`
+    
+    axios.post(`http://localhost:3000/movies/addLib`, movie)
+    .then( () => {
+      //api post request with movie
+      this.setState({
+        message: `added ${movie.title} to library`
+      })
     })
+    .catch( (error) => {
+      this.setState({
+        error: error.message
+      });
+    });
   }
 
   showMovies = () => {
