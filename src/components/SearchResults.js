@@ -61,12 +61,19 @@ class SearchResults extends Component {
   showMovies = () => {
     const movieLibrary = this.state.movies.map((movie, index) => {
       return (
-        <Movie
-        key={index}
-        image_url={movie.image_url}
-        title={movie.title}
-        release_date={movie.release_date}
-        />
+        <div>
+          <Movie
+          key={index}
+          image_url={movie.image_url}
+          title={movie.title}
+          release_date={movie.release_date}
+          />
+
+          <button className="see-customers" onClick={() => {this.addToLib(movie)}}>
+            Add to library
+          </button>
+
+        </div>
       );
     });
     return movieLibrary
