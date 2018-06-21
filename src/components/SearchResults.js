@@ -34,7 +34,6 @@ class SearchResults extends Component {
     });
   }
 
-
   clearSearch = () => {
     this.setState({
       movies: []
@@ -44,6 +43,7 @@ class SearchResults extends Component {
   addToLib = (movie) =>{
 
     axios.post(`http://localhost:3000/movies/addLib`, movie)
+
     .then( () => {
       //api post request with movie
       this.setState({
@@ -58,19 +58,19 @@ class SearchResults extends Component {
   }
 
 
-    showMovies = () => {
-      const movieLibrary = this.state.movies.map((movie, index) => {
-        return (
-          <Movie
-          key={index}
-          image_url={movie.image_url}
-          title={movie.title}
-          release_date={movie.release_date}
-          />
-        );
-      });
-      return movieLibrary
-    }
+  showMovies = () => {
+    const movieLibrary = this.state.movies.map((movie, index) => {
+      return (
+        <Movie
+        key={index}
+        image_url={movie.image_url}
+        title={movie.title}
+        release_date={movie.release_date}
+        />
+      );
+    });
+    return movieLibrary
+  }
 
 
   render() {
@@ -90,10 +90,10 @@ class SearchResults extends Component {
   }
 }
 
-  SearchResults.PropTypes = {
-    searchTitle: PropTypes.string,
-    movies: PropTypes.array,
-  };
+SearchResults.PropTypes = {
+  searchTitle: PropTypes.string,
+  movies: PropTypes.array,
+};
 
 
-  export default SearchResults;
+export default SearchResults;
