@@ -55,7 +55,7 @@ class SearchResults extends Component {
   addToLib = (movie) =>{
     let picture = movie.image_url.split('/w185')
     movie.image_url = picture[1]
-    
+
     axios.post(`http://localhost:3000/add_movie/`, movie)
 
     .then( () => {
@@ -85,7 +85,7 @@ class SearchResults extends Component {
           release_date={movie.release_date}
           />
 
-          <button className="see-customers" onClick={() => {this.addToLib(movie)}}>
+          <button className="rental-movie-button" onClick={() => {this.addToLib(movie)}}>
             Add to library
           </button>
 
@@ -100,7 +100,7 @@ class SearchResults extends Component {
 
     return (
 
-      <section>
+      <section className='library-movies'>
 
         <SearchForm
           clearSearchCallback={this.clearSearch}

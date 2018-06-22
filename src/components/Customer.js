@@ -12,12 +12,15 @@ class Customer extends Component {
   render() {
 
     return (
-      <section className="customer">
-        <span>{this.props.name}</span>
-        <button className="rental-customer" onClick={this.addCustomerToRental}>
+      <div className="customer">
+        <div className="customer-name">
+
+        <div className="customer-name">{this.props.name}</div>
+        <button className="customer-button button" onClick={this.addCustomerToRental}>
           Add Customer to Rental
         </button>
-      </section>
+        </div>
+      </div>
     )
   }
 

@@ -3,7 +3,7 @@
   height: 100%;
 } */
 
-header {
+/* header {
   background-image: url("https://ak2.picdn.net/shutterstock/videos/18609782/thumb/1.jpg");
   background-color: blue;
   height: 12rem;
@@ -44,4 +44,164 @@ nav {
 .message {
   font-weight: bold;
   color: green;
+} */
+.title {
+  display:flex;
+}
+
+.homepage  {
+  display: grid;
+  grid-template:
+    "title"
+    "pic";
+  padding: 1rem;
+  font-family: 'Seaweed Script', cursive;
+}
+
+.storeName {
+  grid-area: "title";
+  font-size: 2rem;
+}
+
+
+.homepage img {
+  grid-area: pic;
+  width: 99% ;
+}
+
+.heading {
+        display: flex;
+        flex-direction: column;
+        grid-area: header;
+        flex-wrap: wrap;
+        font-size: 2.5rem;
+}
+
+#mainHeader {
+  font-family: 'Seaweed Script', cursive;
+  margin-left: 38%;
+  margin-bottom: 0;
+  color: #006A6A;
+}
+
+.header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 0;
+}
+
+#wavey {
+  max-height: 5rem;
+  width: 250%;
+  padding-right: 2rem;
+}
+
+div .header {
+    display: flex;
+    align-items: stretch;
+}
+
+
+.heading ul li {
+      list-style-type: none;
+      display: flex;
+      margin-right: 2%
+}
+
+.rentalClass {
+        grid-area: menu;
+        display: flex;
+        flex-wrap: wrap;
+        font-family: 'Seaweed Script', cursive;
+        font-size: 1.3em;
+        color: #324F17;
+        align-items: top;
+        }
+
+.rentalClass ul { list-style: none;
+            align-content: center;
+            padding-left: 1em;
+            flex-wrap: wrap;
+
+          }
+
+.showContent ul {
+       list-style: none;
+      flex-wrap: wrap;
+
+}
+.showContent { grid-area: main;
+        padding-right: 1rem;
+        display: flex;
+         }
+
+.customer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "name"
+    "become-renter"
+}
+
+.customers {
+  display: grid;
+  grid-template: auto/1fr 1fr;
+  margin-left: 5%;
+  width: 80%
+}
+
+.customer-name {
+  grid-area: name;
+  font-size: 1.1em
+}
+
+.button {
+  grid-area: become-renter;
+  background-color: #93b8c0;
+  color: white;
+}
+
+.library-movies {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  padding: 10px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header header header header"
+    "menu main main main"
+    "menu main main main"
+
+}
+.grid-container > div {
+  padding: 20px;
+}
+
+h4 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0
+}
+
+.movie-search {
+  font-size: 2em;
+  font-family: 'Seaweed Script', cursive;
+}
+
+form {
+  align-items: left;
+}
+
+.search-form {
+  text-align: center;
+  padding-right: 4rem;
 }

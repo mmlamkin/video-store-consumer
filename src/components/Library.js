@@ -39,7 +39,7 @@ class Library extends Component {
     const movieLibrary = this.state.movies.map((movie, index) => {
 
       return (
-        <div>
+        <div className="library-movies">
           <Movie
           key={index}
           image_url={movie.image_url}
@@ -48,7 +48,7 @@ class Library extends Component {
           addMovieToRentalCallback={this.updateRental}
           />
 
-          <button className="rental-movie" onClick={() => {this.updateRental(movie.title)}}>
+          <button className="rental-movie-button" onClick={() => {this.updateRental(movie.title)}}>
             Add Movie to Rental
           </button>
         </div>

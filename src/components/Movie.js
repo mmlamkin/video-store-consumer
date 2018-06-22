@@ -12,9 +12,9 @@ class Movie extends Component {
 
     return (
       <section className="movie">
-        <img src={this.props.image_url} alt="movie thumbnail"/>
-        <p>{this.props.title}</p>
-        <p>{this.props.release_date}</p>
+      <img src={this.props.image_url} alt="movie thumbnail"/>
+      <p>{this.props.title}</p>
+      <p>{this.props.release_date}</p>
       </section>
     )
   }

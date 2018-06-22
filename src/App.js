@@ -77,6 +77,15 @@ class App extends Component {
     })
   }
 
+  defHomePage = () => {
+    return(
+      <div className="homepage">
+        <header className="storeName">Welcome to WaterFlix -- a sea of movies to enjoy</header>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSdUvCvTeimO9N_PLhmkwUySrOBjvE53CbIWuH2wzityRfDusc' height='500' width='500'/>
+      </div>
+    )
+  }
+
   render() {
     const anyErrors = () => {
       if (this.state.error) {
@@ -86,64 +95,88 @@ class App extends Component {
     return (
 
       <Router>
-        <div className="App">
-          <header>
-            <h1>Poseidon Rentals</h1>
-
-            <section className="rental">
-              <h4>Your Rental</h4>
-              <p>Selected Movie: {this.state.rentalMovie}</p>
-              <p>Selected Customer: {this.state.rentalCustomer.name}</p>
-              <button className="create-rental" onClick={this.createRental}>
-                Create Rental
-              </button>
-            </section>
-          </header>
-
-          <nav className="navbar">
-            <Link to={'/'}>
-              <button className="see-customers">
-                Home
-              </button>
-            </Link>
-            <Link to={'/library'}>
-              <button className="see-library" onClick={this.showLibrary}>
-                Faves
-              </button>
-            </Link>
-            <Link to={'/customers'}>
-              <button className="see-customers" onClick={this.showCustomers}>
-                Customers
-              </button>
-            </Link>
-            <Link to={'/search'}>
-              <button className="see-customers" onClick={this.showSearchPage}>
-                Search the Sea
-              </button>
-            </Link>
-          </nav>
-
-          <p className="message">{this.state.message}</p>
-
-      <section className="display">
-      <Route exact={true} path="/" render={() => (
-        <h1>Welcome</h1>
-      )}/>
-
-      <Route path="/library" render={() => (
-        <Library updateRentalCallback={this.updateRentalMovie}/>
-      )}/>
-
-      <Route path="/search" render={() => (
-        <SearchResults />
-      )}/>
-
-      <Route path="/customers" render={() => (
-        <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
-      )}/>
-      </section>
+      <div className="grid-container">
+      <div className="heading">
+      <h1 id="mainHeader">Waterflix</h1>
+      <div className="header">
+      <ul>
+      <li>
+      <Link to={'/'}>
+      <button className="button">
+      Home
+      </button>
+      </Link>
+      </li>
+      <li>
+      <Link to={'/library'}>
+      <button className="see-library button" onClick={this.showLibrary}>
+      Faves
+      </button>
+      </Link>
+      </li>
+      <li>
+      <Link to={'/customers'}>
+      <button className="button" onClick={this.showCustomers}>
+      Customers
+      </button>
+      </Link>
+      </li>
+      <li>
+      <Link to={'/search'}>
+      <button className="button" onClick={this.showSearchPage}>
+      Search the Sea
+      </button>
+      </Link>
+      </li>
+      </ul>
+      <img id="wavey"
+      src='https://blog.csiro.au/wp-content/uploads/2014/07/waves-1024x682.jpg' alt='waves'/>
+      </div>
       </div>
 
+      <div className="rentalClass">
+      <p  className="message"> {this.state.message}</p>
+      {anyErrors()}
+      <ul>
+      <li>
+      <h4>Your Rental</h4>
+      </li>
+      <li>
+      <p>Selected Movie: {this.state.rentalMovie}</p></li>
+      <li>
+      <p>Selected Customer: {this.state.rentalCustomer.name}</p></li>
+      <li>
+      <button className="button" onClick={this.createRental}>
+      Create Rental
+      </button>
+      </li>
+      </ul>
+      </div>
+
+      <div className="showContent">
+        <Route exact={true} path="/" render={() => (
+          this.defHomePage()
+        )}/>
+      </div>
+
+      <div className="showContent">
+        <Route path="/library" render={() => (
+          <Library updateRentalCallback={this.updateRentalMovie}/>
+        )}/>
+      </div>
+
+      <div className="showContent">
+        <Route path="/search" render={() => (
+          <SearchResults />
+        )}/>
+      </div>
+
+      <div className="showContent">
+        <Route path="/customers" render={() => (
+          <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
+        )}/>
+      </div>
+      </div>
       </Router>
 
     );

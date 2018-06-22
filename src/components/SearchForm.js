@@ -38,9 +38,10 @@ class SearchForm extends Component {
 
   render() {
     return (
+      <div className="search-form">
       <form onSubmit={this.onFormSubmit}>
-        <div key="movieName">
-          <label htmlFor="movieName">Movie: </label>
+        <div class="search-form" key="movieName">
+          <label className="movie-search" htmlFor="movieName">Search Movies: </label>
           <input
             id="movieName"
             name="movieName"
@@ -53,8 +54,10 @@ class SearchForm extends Component {
         <input
         type="submit"
         value="Search"
+        className="button"
         />
       </form>
+      </div>
 
     );
   }
