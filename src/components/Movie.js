@@ -4,9 +4,6 @@ import './Movie.css';
 
 class Movie extends Component {
 
-  // addMovieToRental= () => {
-  //   this.props.addMovieToRentalCallback(this.props.title)
-  // }
 
   render() {
 

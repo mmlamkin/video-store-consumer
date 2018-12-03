@@ -95,88 +95,89 @@ class App extends Component {
     return (
 
       <Router>
-      <div className="grid-container">
-      <div className="heading">
-      <h1 id="mainHeader">Waterflix</h1>
-      <div className="header">
-      <ul>
-      <li>
-      <Link to={'/'}>
-      <button className="button">
-      Home
-      </button>
-      </Link>
-      </li>
-      <li>
-      <Link to={'/library'}>
-      <button className="see-library button" onClick={this.showLibrary}>
-      Faves
-      </button>
-      </Link>
-      </li>
-      <li>
-      <Link to={'/customers'}>
-      <button className="button" onClick={this.showCustomers}>
-      Customers
-      </button>
-      </Link>
-      </li>
-      <li>
-      <Link to={'/search'}>
-      <button className="button" onClick={this.showSearchPage}>
-      Search the Sea
-      </button>
-      </Link>
-      </li>
-      </ul>
-      <img id="wavey"
-      src='https://blog.csiro.au/wp-content/uploads/2014/07/waves-1024x682.jpg' alt='waves'/>
-      </div>
-      </div>
+        <div className="grid-container">
+          <div className="heading">
+            <h1 id="mainHeader">Waterflix</h1>
+              <div className="header">
+                <ul>
+                  <li>
+                    <Link to={'/'}>
+                      <button className="button">
+                        Home
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/library'}>
+                      <button className="see-library button" onClick={this.showLibrary}>
+                      Faves
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/customers'}>
+                      <button className="button" onClick={this.showCustomers}>
+                      Customers
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/search'}>
+                      <button className="button" onClick={this.showSearchPage}>
+                      Search the Sea
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+                <img id="wavey"
+                src='https://blog.csiro.au/wp-content/uploads/2014/07/waves-1024x682.jpg' alt='waves'/>
+              </div>
+            </div>
 
-      <div className="rentalClass">
-      <p  className="message"> {this.state.message}</p>
-      {anyErrors()}
-      <ul>
-      <li>
-      <h4>Your Rental</h4>
-      </li>
-      <li>
-      <p>Selected Movie: {this.state.rentalMovie}</p></li>
-      <li>
-      <p>Selected Customer: {this.state.rentalCustomer.name}</p></li>
-      <li>
-      <button className="button" onClick={this.createRental}>
-      Create Rental
-      </button>
-      </li>
-      </ul>
-      </div>
+            <div className="rentalClass">
+              <p  className="message"> {this.state.message}</p>
+              {anyErrors()}
+              <ul>
+                <li>
+                  <h4>Your Rental</h4>
+                </li>
+                <li>
+                  <p>Selected Movie: {this.state.rentalMovie}</p>
+                </li>
+                <li>
+                  <p>Selected Customer: {this.state.rentalCustomer.name}</p></li>
+                <li>
+                  <button className="button" onClick={this.createRental}>
+                  Create Rental
+                  </button>
+                </li>
+              </ul>
+            ]</div>
 
-      <div className="showContent">
-        <Route exact={true} path="/" render={() => (
-          this.defHomePage()
-        )}/>
-      </div>
+            <div className="showContent">
+              <Route exact={true} path="/" render={() => (
+                this.defHomePage()
+              )}/>
+            </div>
 
-      <div className="showContent">
-        <Route path="/library" render={() => (
-          <Library updateRentalCallback={this.updateRentalMovie}/>
-        )}/>
-      </div>
+            <div className="showContent">
+              <Route path="/library" render={() => (
+                <Library updateRentalCallback={this.updateRentalMovie}/>
+              )}/>
+            </div>
 
-      <div className="showContent">
-        <Route path="/search" render={() => (
-          <SearchResults />
-        )}/>
-      </div>
+            <div className="showContent">
+              <Route path="/search" render={() => (
+                <SearchResults />
+              )}/>
+            </div>
 
-      <div className="showContent">
-        <Route path="/customers" render={() => (
-          <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
-        )}/>
-      </div>
-      </div>
+            <div className="showContent">
+              <Route path="/customers" render={() => (
+                <CustomerList url="http://localhost:3000/customers" updateRentalCallback={this.updateRentalCustomer}/>
+              )}/>
+            </div>
+          </div>
       </Router>
 
     );
